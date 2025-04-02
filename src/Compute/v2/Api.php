@@ -746,6 +746,51 @@ class Api extends AbstractApi
         ];
     }
 
+    public function getServerGroup(): array
+    {
+        return [
+            'method' => 'GET',
+            'path'   => 'os-server-groups/{id}',
+            'params' => [
+                'id'   => $this->isRequired($this->params->idPath())
+            ],
+        ];
+    }
+
+    public function getServerGroups(): array
+    {
+        return [
+            'method' => 'GET',
+            'path'   => 'os-server-groups',
+            'params' => [
+            ],
+        ];
+    }
+
+    public function postServerGroup(): array
+    {
+        return [
+            'method'  => 'POST',
+            'path'    => 'os-server-groups',
+            'jsonKey' => 'server_group',
+            'params'  => [
+                'name'      => $this->isRequired($this->params->name('server_group')),
+                'policy'    => $this->params->serverGroupPolicy(),
+            ],
+        ];
+    }
+
+    public function deleteServerGroup(): array
+    {
+        return [
+            'method' => 'DELETE',
+            'path'   => 'os-server-groups/{id}',
+            'params' => [
+                'id' => $this->isRequired($this->params->idPath()),
+            ],
+        ];
+    }
+
     public function getVolumeAttachments(): array
     {
         return [

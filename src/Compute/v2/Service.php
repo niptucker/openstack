@@ -15,6 +15,7 @@ use OpenStack\Compute\v2\Models\Keypair;
 use OpenStack\Compute\v2\Models\Limit;
 use OpenStack\Compute\v2\Models\QuotaSet;
 use OpenStack\Compute\v2\Models\Server;
+use OpenStack\Compute\v2\Models\ServerGroup;
 
 /**
  * Compute v2 service for OpenStack.
@@ -172,6 +173,38 @@ class Service extends AbstractService
         return $keypair;
     }
 
+
+    /**
+     * List server groups.
+     *
+     * @param array         $options {@see \OpenStack\Compute\v2\Api::getServerGroups()}
+     * @param callable|null $mapFn   a callable function that will be invoked on every iteration of the list
+     *
+     * @return \Generator<mixed, \OpenStack\Compute\v2\Models\ServerGroup>
+     */
+    public function listServerGroups(array $options = [], ?callable $mapFn = null): \Generator
+    {
+        return $this->model(ServerGroup::class)->enumerate($this->api->getServerGroups(), $options, $mapFn);
+    }
+
+    /**
+     * Create server group.
+     */
+    public function createServerGroup(array $options): ServerGroup
+    {
+        return $this->model(ServerGroup::class)->create($options);
+    }
+
+    /**
+     * Get server group.
+     */
+    public function getServerGroup(array $options = []): ServerGroup
+    {
+        $serverGroup = $this->model(ServerGroup::class);
+        $serverGroup->populateFromArray($options);
+
+        return $serverGroup;
+    }
     /**
      * Shows rate and absolute limits for the tenant.
      */

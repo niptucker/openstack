@@ -197,6 +197,28 @@ class Params extends AbstractParams
         ];
     }
 
+    public function routes(): array
+    {
+        return [
+            'type'   => self::ARRAY_TYPE,
+            'sentAs' => 'routes',
+            'items'  => [
+                'type'       => self::OBJECT_TYPE,
+                'properties' => [
+                    'destination' => [
+                        'type'        => self::STRING_TYPE,
+                        'description' => 'Destination for static route',
+                    ],
+                    'nexthop' => [
+                        'type'        => self::STRING_TYPE,
+                        'description' => 'Nexthop for the destination',
+                    ],
+                ],
+            ],
+            'description' => 'A list of host route dictionaries for the router',
+        ];
+    }
+
     public function statusQuery(): array
     {
         return [

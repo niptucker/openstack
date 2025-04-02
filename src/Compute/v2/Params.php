@@ -662,4 +662,13 @@ EOL
     {
         return $this->quotaSetLimit('server_group_members', 'The number of allowed members for each server group.');
     }
+
+    public function serverGroupPolicy(): array
+    {
+        return [
+            'type'        => self::STRING_TYPE,
+            'location'    => self::JSON,
+            'description' => 'Add a policy to Server. Need compute api version 2.15 or higher for the "soft-affinity" or "soft-anti-affinity" policy.',
+        ];
+    }
 }

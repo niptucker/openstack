@@ -172,4 +172,28 @@ trait ApiTrait
             ],
         ];
     }
+
+    public function putAddRoutes()
+    {
+        return [
+            'method' => 'PUT',
+            'path'   => $this->pathPrefix.'/routers/{id}/add_extraroutes',
+            'jsonKey' => 'router',
+            'params' => [
+                'routes'  => $this->params->routes(),
+            ],
+        ];
+    }
+
+    public function putRemoveRoutes()
+    {
+        return [
+            'method' => 'PUT',
+            'path'   => $this->pathPrefix.'/routers/{id}/remove_extraroutes',
+            'jsonKey' => 'router',
+            'params' => [
+                'routes'  => $this->params->routes(),
+            ],
+        ];
+    }
 }
